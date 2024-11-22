@@ -1,8 +1,15 @@
 function Card() {
-    const color ={
-        color: "rgb(255, 0, 0)"
+    const user = {   
     }
-    return <p style={color}>Dominus in equi est</p>
+    return (
+        <>  
+            <div>
+                <p>Dominus in equi est</p>
+            </div>
+        </>
+    )
 }
 
-export default Card
+
+
+export default Card;
