@@ -1,10 +1,14 @@
+import FunctionNumber from "./FunctionNumber"
+
 function InterfaceCreate() {
     return (
         <>
-            <section class="Content-Out">
-                <div class="Num-to-operate"></div>
-                <div class="Num-Button">
-                    <div class="Numbers">                    
+            <section>
+                <section>
+                    <div> </div>
+                </section>
+                <div>
+                    <div>                    
                         <button>1</button>
                         <button>2</button>
                         <button>3</button>
@@ -14,17 +18,22 @@ function InterfaceCreate() {
                         <button>7</button>
                         <button>8</button>
                         <button>9</button>
+                        <button>=</button>
                         <button>0</button>
+                        <button>.</button>
                     </div>
-                    <div class="Operators">
+                    <div className="Operators">
                         <button>+</button>
                         <button>-</button>
+                        <button>*</button>
+                        <button>/</button>
                     </div>
                     <div>
                         <button>Clear</button>
                     </div>
                 </div>
             </section>
+            
         </>
     )
 }

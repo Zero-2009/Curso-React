@@ -1,4 +1,4 @@
-import InterFace from "./components/InterfaceCreate.jsx"
+import InterFace from "./components/InterfaceCreate"
 
 function App() {
   return <InterFace />
