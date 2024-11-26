@@ -1,30 +1,36 @@
-
 import "./interface.css"
+
 function InterfaceCreate() {
     // Ver tema de hoooks en REACTs
+    const numberToOperation = () => {
+
+    }
     const addNumber = (e) => {
         let value = e.target.innerText;
         let numberView = document.getElementById("view-data");
         let numberPass = numberView.textContent;
-        numberView.innerText = numberPass + value;        
+        numberView.innerText = numberPass + value;
     }
-
+    const addOperator = (e) => {
+        let numberView = document.getElementById("view-data");
+        let operator = e.target.innerText;
+        let operatorPass = numberView.textContent;
+        numberView.innerText = operatorPass + operator;
+    }
     const clearNumber = () => {
         let numberView = document.getElementById("view-data");
         numberView.innerText = "";
     }
-
     return (
         <>
-            <section className="interface-calulcator">
+            <section className="interface-calculator">
                 <section className="interface-view">
-                    <div id="view-data">
-                    </div>
+                    <div id="view-data"></div>
                 </section>
                 <div className="interface-container">
                     <section className="interface-operations-numbers">
                         <div className="interface-numbers">                    
-                            <button onClick={addNumber}>1</button>
+                            <button id="number1" onClick={addNumber}>1</button>
                             <button onClick={addNumber}>2</button>
                             <button onClick={addNumber}>3</button>
                             <button onClick={addNumber}>4</button>
@@ -38,10 +44,10 @@ function InterfaceCreate() {
                             <button onClick={addNumber}>.</button>
                         </div>
                         <div className="interface-operators">
-                            <button>+</button>
-                            <button>-</button>
-                            <button>*</button>
-                            <button>/</button>
+                            <button onClick={addOperator}>+</button>
+                            <button onClick={addOperator}>-</button>
+                            <button onClick={addOperator}>*</button>
+                            <button onClick={addOperator}>/</button>
                         </div>
                     </section>
                     
