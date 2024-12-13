@@ -1,58 +1,69 @@
 import "./interface.css"
-
 //Tareas:
 //1) Que no se pueda tener mas de un operador
-//2) Sumar mas de dos numeros 
+//2) Sumar mas de dos numeros
+
 function InterfaceCreate() {
-    // Ver tema de hoooks en REACTs
-    let valueOne = "";
-    let valueTwo = "";
-    let operation = "";
+    //Only numbers can go in "values" (enteros)
+    let value = [];
+
+    //And in operation only go "operation" (string)
+    let operation = [];
+
+    //Here show the result in string (string)
     let result = "";
+
+    //Here add digits and chain them on "values"
     const addNumber = (e) => {
-        let value = e.target.innerText;
-        let numberView = document.getElementById("view-data");
-        let numberPass = numberView.textContent;
-        numberView.innerText = numberPass + value;
-        if (operation === "") {
-            valueOne = valueOne + value;
-        } else {
-            valueTwo = valueTwo + value;
-        }
+        let digit = e.target.innerText;
+        let View = document.getElementById("view-data");
+        let digitBefore = View.textContent;
+        let numberFinished = digitBefore + digit;
+        View.innerText = numberFinished;
+        //This array content digits for conformed one number 
+        value = new Array(numberFinished);
+        console.log(Number(value));
+        console.log(value)
     }
+
+    //Here we are the sign of operation "+,-,x,/"
     const addOperator = (e) => {
-        let numberView = document.getElementById("view-data");
-        let operator = e.target.innerText;
-        let operatorPass = numberView.textContent;
-        numberView.innerText = operatorPass + operator;
-        operation = operator;
+        let View = document.getElementById("view-data");
+        let operatorForView = e.target.innerText;
+        //This array content operator for the numbers up 
+        View.innerText = "";
+        View.innerText = operatorForView;
+        operation = new Array(operatorForView);
+        console.log(Number(operation));
+        console.log(operation);
     }
+    
     const showResult = () => {
-        let numbers_operated = document.getElementById("view-NmsOperated")
+        let numbersOperated = document.getElementById("view-NmsOperated")
         let numberComplete = document.getElementById("view-data");
         let operatorShow = numberComplete.textContent;
-        numbers_operated.style.display = "block";
-        if (operation == "+") {
+        if (operation === "+") {
             result = Number(valueOne) + Number(valueTwo);
             numberComplete.innerText = result;
-        } if (operation == "-") {
+        } if (operation === "-") {
             result = Number(valueOne) - Number(valueTwo);
             numberComplete.innerText = result;
-        } if (operation == "*") {
+        } if (operation === "*") {
             result = Number(valueOne) * Number(valueTwo);
             numberComplete.innerText = result;
-        } if (operation == "/") {
+        } if (operation === "/") {
             result = Number(valueOne) / Number(valueTwo);
             numberComplete.innerText = result;
         }
     }
     const clearNumber = () => {
-        let numberView = document.getElementById("view-data");
-        numberView.innerText = "";
-        valueOne = "";
-        valueTwo = "";
-        operation = "";
+        let View = document.getElementById("view-data");
+        View.innerText = "";
+        value = [];
+        operation: [];
+        result = "";
     }
+
     return (
         <>
             <section className="interface-calculator">
@@ -79,7 +90,7 @@ function InterfaceCreate() {
                         <div className="interface-operators">
                             <button onClick={addOperator}>+</button>
                             <button onClick={addOperator}>-</button>
-                            <button onClick={addOperator}>*</button>
+                            <button onClick={addOperator}>x</button>
                             <button onClick={addOperator}>/</button>
                         </div>
                     </section>
