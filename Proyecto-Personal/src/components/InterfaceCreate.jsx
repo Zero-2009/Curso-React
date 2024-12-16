@@ -2,73 +2,47 @@ import "./interface.css"
 //Tareas:
 //1) Que no se pueda tener mas de un operador
 //2) Sumar mas de dos numeros
+//Tareas complete :p
 
 function InterfaceCreate() {
-    //Only numbers can go in "values" (enteros)
     let value = [];
-
-    //And in operation only go "operation" (string)
-    let operation = [];
-
-    //Here show the result in string (string)
-    let result = "";
-
-    //Here add digits and chain them on "values"
     const addNumber = (e) => {
         let digit = e.target.innerText;
         let View = document.getElementById("view-data");
-        let digitBefore = View.textContent;
-        let numberFinished = digitBefore + digit;
+        let number = View.textContent;
+        let numberFinished = number + digit;
         View.innerText = numberFinished;
-        //This array content digits for conformed one number 
         value = new Array(numberFinished);
-        console.log(Number(value));
-        console.log(value)
     }
-
-    //Here we are the sign of operation "+,-,x,/"
     const addOperator = (e) => {
         let View = document.getElementById("view-data");
-        let operatorForView = e.target.innerText;
-        //This array content operator for the numbers up 
-        View.innerText = "";
-        View.innerText = operatorForView;
-        operation = new Array(operatorForView);
-        console.log(Number(operation));
-        console.log(operation);
+        let operator = e.target.innerText;
+        let Before = View.textContent;
+        let numberBefore = Before + operator;
+        View.innerText = numberBefore;
     }
-    
     const showResult = () => {
-        let numbersOperated = document.getElementById("view-NmsOperated")
         let numberComplete = document.getElementById("view-data");
-        let operatorShow = numberComplete.textContent;
-        if (operation === "+") {
-            result = Number(valueOne) + Number(valueTwo);
+        let numberOperated = document.getElementById("view-numbers-operated")
+        numberOperated = numberComplete.textContent;
+        numberComplete.innerText = numberOperated;
+        console.log(numberOperated)
+        value.forEach((operacion) => {
+            const result = eval(operacion);
             numberComplete.innerText = result;
-        } if (operation === "-") {
-            result = Number(valueOne) - Number(valueTwo);
-            numberComplete.innerText = result;
-        } if (operation === "*") {
-            result = Number(valueOne) * Number(valueTwo);
-            numberComplete.innerText = result;
-        } if (operation === "/") {
-            result = Number(valueOne) / Number(valueTwo);
-            numberComplete.innerText = result;
-        }
+            console.log(result)
+        })
     }
     const clearNumber = () => {
         let View = document.getElementById("view-data");
         View.innerText = "";
         value = [];
-        operation: [];
-        result = "";
     }
-
     return (
         <>
             <section className="interface-calculator">
                 <section className="interface-view">
-                    <div className="view-numbers-operated" id="view-NmsOperated"></div>
+                    <div className="view-numbers-operated" id="view-numbers-operated"></div>
                     <div className="view-numbers" id="view-data"></div>
                 </section>
                 <div className="interface-container">
@@ -90,7 +64,7 @@ function InterfaceCreate() {
                         <div className="interface-operators">
                             <button onClick={addOperator}>+</button>
                             <button onClick={addOperator}>-</button>
-                            <button onClick={addOperator}>x</button>
+                            <button onClick={addOperator}>*</button>
                             <button onClick={addOperator}>/</button>
                         </div>
                     </section>
