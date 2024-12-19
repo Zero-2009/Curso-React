@@ -1,4 +1,4 @@
-import "./interface.css"
+import "./Style-Calculator.css"
 //Tareas:
 //1) Que no se pueda tener mas de un operador
 //2) Sumar mas de dos numeros
