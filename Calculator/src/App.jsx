@@ -1,11 +1,7 @@
 import Calculator from "./components/Calculator.jsx"
 
 function App() {
-  return (
-    <>
-      <Calculator />
-    </>
-  )
+  return <Calculator />
 }
 
 export default App;

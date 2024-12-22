@@ -5,21 +5,31 @@ import "./Style-Calculator.css"
 //3) No utilizar el eval()
 
 function InterfaceCreate() {
-    let value = [];
+    let values = [];
+    let operatores = [];
+    let result = "";
     const addNumber = (e) => {
         let digit = e.target.innerText;
         let View = document.getElementById("view-data");
         let number = View.textContent;
         let numberFinished = number + digit;
         View.innerText = numberFinished;
-        value = new Array(numberFinished);
+        while (values.length == 0) {
+            values = new Array(numberFinished);
+            console.log("Hola mundo");
+        }
+        console.log(values);
     }
     const addOperator = (e) => {
         let View = document.getElementById("view-data");
         let operator = e.target.innerText;
-        let Before = View.textContent;
-        let numberBefore = Before + operator;
-        View.innerText = numberBefore;
+        let btnOperatorDisable = document.querySelectorAll("#btn");
+        View.innerText = operator;
+        operatores.push(operator);
+        btnOperatorDisable.forEach(function(button) {
+            button.disabled = true;
+        })
+        console.log(operatores)
     }
     const showResult = () => {
         let numberComplete = document.getElementById("view-data");
@@ -27,16 +37,13 @@ function InterfaceCreate() {
         numberOperated = numberComplete.textContent;
         numberComplete.innerText = numberOperated;
         console.log(numberOperated)
-        value.forEach((operacion) => {
-            const result = eval(operacion);
-            numberComplete.innerText = result;
-            console.log(result)
-        })
     }
     const clearNumber = () => {
         let View = document.getElementById("view-data");
         View.innerText = "";
-        value = [];
+        values = [];
+        operatores = [];
+        result = "";
     }
     return (
         <>
@@ -62,10 +69,10 @@ function InterfaceCreate() {
                             <button onClick={addNumber}>.</button>
                         </div>
                         <div className="interface-operators">
-                            <button onClick={addOperator}>+</button>
-                            <button onClick={addOperator}>-</button>
-                            <button onClick={addOperator}>*</button>
-                            <button onClick={addOperator}>/</button>
+                            <button id="btn" onClick={addOperator}>+</button>
+                            <button id="btn" onClick={addOperator}>-</button>
+                            <button id="btn" onClick={addOperator}>*</button>
+                            <button id="btn" onClick={addOperator}>/</button>
                         </div>
                     </section>
                     
