@@ -2,48 +2,46 @@ import "./Style-Calculator.css"
 //Tareas:
 //1) Que no se pueda tener mas de un operador
 //2) Sumar mas de dos numeros
-//3) No utilizar el eval()
 
 function InterfaceCreate() {
     let values = [];
-    let operatores = [];
     let result = "";
+    let NumberTemporaty = "";
     const addNumber = (e) => {
-        let digit = e.target.innerText;
+        const value = e.target.innerText;
         let View = document.getElementById("view-data");
-        let number = View.textContent;
-        let numberFinished = number + digit;
-        View.innerText = numberFinished;
-        while (values.length == 0) {
-            values = new Array(numberFinished);
-            console.log("Hola mundo");
-        }
-        console.log(values);
+        let btnOperatorDisable = document.querySelectorAll("#btn");
+        NumberTemporaty += value;
+        View.innerText = NumberTemporaty;
+        btnOperatorDisable.forEach(function(button) {
+            button.disabled = false;
+        })
+        console.log(values)
     }
     const addOperator = (e) => {
+        const operator = e.target.innerText;
         let View = document.getElementById("view-data");
-        let operator = e.target.innerText;
         let btnOperatorDisable = document.querySelectorAll("#btn");
+        values.push(NumberTemporaty);
+        values.push(operator);
         View.innerText = operator;
-        operatores.push(operator);
         btnOperatorDisable.forEach(function(button) {
             button.disabled = true;
         })
-        console.log(operatores)
+        NumberTemporaty = "";
+        console.log(values)
     }
     const showResult = () => {
-        let numberComplete = document.getElementById("view-data");
-        let numberOperated = document.getElementById("view-numbers-operated")
-        numberOperated = numberComplete.textContent;
-        numberComplete.innerText = numberOperated;
-        console.log(numberOperated)
+        let View = document.getElementById("view-data");
+        values.push(NumberTemporaty);
+        // Put the expression in this div view-numbers-operated
+        // result.innerText = values.join(" ");
+        View.innerText = "Hola mundo";
+        console.log(values)
     }
     const clearNumber = () => {
         let View = document.getElementById("view-data");
         View.innerText = "";
-        values = [];
-        operatores = [];
-        result = "";
     }
     return (
         <>
