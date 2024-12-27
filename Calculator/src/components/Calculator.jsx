@@ -22,7 +22,7 @@ function InterfaceCreate() {
         const operator = e.target.innerText;
         let View = document.getElementById("view-data");
         let btnOperatorDisable = document.querySelectorAll("#btn");
-        values.push(NumberTemporaty);
+        values.push(Number(NumberTemporaty));
         values.push(operator);
         View.innerText = operator;
         btnOperatorDisable.forEach(function(button) {
@@ -31,12 +31,23 @@ function InterfaceCreate() {
         NumberTemporaty = "";
         console.log(values)
     }
+    // Put the expression in this div view-numbers-operated
+    // result.innerText = values.join(" ");
     const showResult = () => {
         let View = document.getElementById("view-data");
-        values.push(NumberTemporaty);
-        // Put the expression in this div view-numbers-operated
-        // result.innerText = values.join(" ");
-        View.innerText = "Hola mundo";
+        values.push(Number(NumberTemporaty));
+        for (let i = 0; i < values.length; i++) {
+            if (values[i] === "+") {
+                result = values[i - 1] + values[i + 1]
+            } if (values[i] === "-") {
+                result = values[i - 1] - values[i + 1]
+            } if (values[i] === "*") {
+                result = values[i - 1] * values[i + 1]
+            } if (values[i] === "/") {              
+                result = values[i - 1] / values[i + 1]
+            }
+        }
+        View.innerText = result;
         console.log(values)
     }
     const clearNumber = () => {
