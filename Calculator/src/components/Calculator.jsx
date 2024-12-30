@@ -1,12 +1,10 @@
 import "./Style-Calculator.css"
-//Tareas:
-//1) Que no se pueda tener mas de un operador
-//2) Sumar mas de dos numeros
 
 function InterfaceCreate() {
-    let values = [];
     let result = "";
     let NumberTemporaty = "";
+    let arrayNumber = [];
+    let arrayOperator = [];
     const addNumber = (e) => {
         const value = e.target.innerText;
         let View = document.getElementById("view-data");
@@ -16,43 +14,46 @@ function InterfaceCreate() {
         btnOperatorDisable.forEach(function(button) {
             button.disabled = false;
         })
-        console.log(values)
     }
     const addOperator = (e) => {
         const operator = e.target.innerText;
         let View = document.getElementById("view-data");
         let btnOperatorDisable = document.querySelectorAll("#btn");
-        values.push(Number(NumberTemporaty));
-        values.push(operator);
+        arrayNumber.push(Number(NumberTemporaty));
+        arrayOperator.push(operator);
         View.innerText = operator;
         btnOperatorDisable.forEach(function(button) {
             button.disabled = true;
         })
         NumberTemporaty = "";
-        console.log(values)
     }
-    // Put the expression in this div view-numbers-operated
-    // result.innerText = values.join(" ");
-    const showResult = () => {
-        let View = document.getElementById("view-data");
-        values.push(Number(NumberTemporaty));
-        for (let i = 0; i < values.length; i++) {
-            if (values[i] === "+") {
-                result = values[i - 1] + values[i + 1]
-            } if (values[i] === "-") {
-                result = values[i - 1] - values[i + 1]
-            } if (values[i] === "*") {
-                result = values[i - 1] * values[i + 1]
-            } if (values[i] === "/") {              
-                result = values[i - 1] / values[i + 1]
+    function operated() {
+        arrayOperator.forEach((operator) => {
+            let i = 0;
+            while (i < arrayNumber.length) {
+                if (arrayOperator[i] === "+") {
+                    result = arrayNumber[i] + arrayNumber[i + 1];
+                    console.log(result);
+                    console.log("Suma");
+                } if (arrayOperator[i] === "-") {
+                } if (arrayOperator[i] === "*") {
+                } if (arrayOperator[i] === "/") {
+                }
+                i++;
             }
-        }
+        })
+    }
+    const showResult = () => {
+        const View = document.getElementById("view-data");
+        const ViewOperated = document.getElementById("view-numbers-operated");
+        arrayNumber.push(Number(NumberTemporaty));
+        console.log(arrayNumber);
+        console.log(arrayOperator);
+        operated();
         View.innerText = result;
-        console.log(values)
     }
     const clearNumber = () => {
         let View = document.getElementById("view-data");
-        View.innerText = "";
     }
     return (
         <>
