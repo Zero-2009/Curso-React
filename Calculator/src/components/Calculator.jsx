@@ -1,7 +1,7 @@
 import "./Style-Calculator.css"
 
 function InterfaceCreate() {
-    let result = "";
+    let ResultTemporary = "";
     let NumberTemporaty = "";
     let arrayNumber = [];
     let arrayOperator = [];
@@ -28,18 +28,29 @@ function InterfaceCreate() {
         NumberTemporaty = "";
     }
     function operated() {
-        arrayOperator.forEach((operator) => {
-            let i = 0;
-            while (i < arrayNumber.length) {
-                if (arrayOperator[i] === "+") {
-                    result = arrayNumber[i] + arrayNumber[i + 1];
-                    console.log(result);
-                    console.log("Suma");
-                } if (arrayOperator[i] === "-") {
-                } if (arrayOperator[i] === "*") {
-                } if (arrayOperator[i] === "/") {
+        arrayOperator.forEach((operator, index) => {
+            let number1 = arrayNumber[index];
+            let number2 = arrayNumber[index + 1];
+            if (index === 0) {
+                if (operator === "+") {
+                    ResultTemporary = number1 + number2;
+                } else if (operator === "-") {
+                    ResultTemporary = number1 - number2;
+                } else if (operator === "*") {
+                    ResultTemporary = number1 * number2;
+                } else if (operator === "/") {
+                    ResultTemporary = number1 / number2;
                 }
-                i++;
+            } else {
+                if (operator === "+") {
+                    ResultTemporary += number2;
+                } else if (operator === "-") {
+                    ResultTemporary -= number2;
+                } else if (operator === "*") {
+                    ResultTemporary *= number2;
+                } else if (operator === "/") {
+                    ResultTemporary /= number2;
+                }
             }
         })
     }
@@ -50,7 +61,7 @@ function InterfaceCreate() {
         console.log(arrayNumber);
         console.log(arrayOperator);
         operated();
-        View.innerText = result;
+        View.innerText = ResultTemporary;
     }
     const clearNumber = () => {
         let View = document.getElementById("view-data");
