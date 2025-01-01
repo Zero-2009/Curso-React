@@ -63,6 +63,12 @@ function InterfaceCreate() {
         operated();
         View.innerText = ResultTemporary;
     }
+    const DeleteLastDigit = () => {
+        console.log("Delete Last Digit")
+    }
+    const Porcentage = () => {
+        console.log("Porcentage")
+    }
     const clearNumber = () => {
         let View = document.getElementById("view-data");
     }
@@ -73,34 +79,31 @@ function InterfaceCreate() {
                     <div className="view-numbers-operated" id="view-numbers-operated"></div>
                     <div className="view-numbers" id="view-data"></div>
                 </section>
-                <div className="interface-container">
-                    <section className="interface-operations-numbers">
-                        <div className="interface-numbers">                    
-                            <button id="number1" onClick={addNumber}>1</button>
-                            <button onClick={addNumber}>2</button>
-                            <button onClick={addNumber}>3</button>
-                            <button onClick={addNumber}>4</button>
-                            <button onClick={addNumber}>5</button>
-                            <button onClick={addNumber}>6</button>
+                <section className="interface-container">
+                        <div className="interface-numbers">  
+                            <button onClick={clearNumber}>clr</button>
+                            <button onClick={DeleteLastDigit}>DEL</button>
+                            <button onClick={Porcentage}>%</button>
                             <button onClick={addNumber}>7</button>
                             <button onClick={addNumber}>8</button>
                             <button onClick={addNumber}>9</button>
-                            <button onClick={showResult}>=</button>
-                            <button onClick={addNumber}>0</button>
+                            <button onClick={addNumber}>4</button>
+                            <button onClick={addNumber}>5</button>
+                            <button onClick={addNumber}>6</button>
+                            <button onClick={addNumber}>1</button>
+                            <button onClick={addNumber}>2</button>
+                            <button onClick={addNumber}>3</button>
                             <button onClick={addNumber}>.</button>
+                            <button onClick={addNumber}>0</button>
+                            <button onClick={showResult}>=</button>
                         </div>
                         <div className="interface-operators">
-                            <button id="btn" onClick={addOperator}>+</button>
-                            <button id="btn" onClick={addOperator}>-</button>
-                            <button id="btn" onClick={addOperator}>*</button>
                             <button id="btn" onClick={addOperator}>/</button>
+                            <button id="btn" onClick={addOperator}>*</button>
+                            <button id="btn" onClick={addOperator}>-</button>
+                            <button id="btn" onClick={addOperator}>+</button>
                         </div>
-                    </section>
-                    
-                    <div className="interface-clear">
-                        <button onClick={clearNumber}>Clear</button>
-                    </div>
-                </div>
+                </section>
             </section>
             
         </>
