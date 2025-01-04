@@ -97,14 +97,16 @@ function InterfaceCreate() {
                             <button className="btn-num" onClick={addNumber}>.</button>
                             <button className="btn-num" onClick={addNumber}>0</button>
                         </div>
-                        <div className="interface-operators">
-                            <button id="btn-operator" onClick={addOperator}>/</button>
-                            <button id="btn-operator" onClick={addOperator}>*</button>
-                            <button id="btn-operator" onClick={addOperator}>-</button>
-                            <button id="btn-operator" onClick={addOperator}>+</button>
-                        </div>
-                        <div className="Clear">
-                                <button onClick={showResult}>=</button>
+                        <div className="Interface-Operator-Result">
+                            <div className="interface-operators">
+                                <button id="btn-operator" onClick={addOperator}>/</button>
+                                <button id="btn-operator" onClick={addOperator}>*</button>
+                                <button id="btn-operator" onClick={addOperator}>-</button>
+                                <button id="btn-operator" onClick={addOperator}>+</button>
+                            </div>
+                            <div className="interface-result">
+                                <button className="Btn-result" onClick={showResult}>=</button>
+                            </div>
                         </div>
                 </section>
             </section>
