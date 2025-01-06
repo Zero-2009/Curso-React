@@ -9,25 +9,31 @@ function InterfaceCreate() {
         let digit = e.target.innerText;
         let View = document.getElementById("view-data");
         let btnOperatorDisable = document.querySelectorAll("#btn-operator");
+        // NumberTemporaty is the number with all of the digit and View.textContent is the content of View show now
         NumberTemporaty += digit;
-        View.innerText = View.textContent + NumberTemporaty;
+        View.textContent += digit;
+        // that is for undisable the buttons of operators
         btnOperatorDisable.forEach(function(button) {
             button.disabled = false;
         })
-        console.log(View.textContent)
     }
     const addOperator = (e) => {
         let operator = e.target.innerText;
         let View = document.getElementById("view-data");
         let btnOperatorDisable = document.querySelectorAll("#btn-operator");
-        arrayNumber.push(Number(NumberTemporaty));
-        arrayOperator.push(operator);
-        View.innerText = NumberTemporaty + operator;
+        // View.textContent put but no abovewrite the View else majoring the operator
+        View.textContent += operator;
+        // That disble the button when try to put another operator 
         btnOperatorDisable.forEach(function(button) {
             button.disabled = true;
         })
+        //.push the number and the operator for the operation to result
+        arrayNumber.push(Number(NumberTemporaty));  
+        arrayOperator.push(operator);
+        // This clean the numberTemporaty 'cause we need another number until the button result is click
         NumberTemporaty = "";
     }
+    // function to operated the numbers and operators
     function operated() {
         arrayOperator.forEach((operator, index) => {
             let number1 = arrayNumber[index];
@@ -58,10 +64,11 @@ function InterfaceCreate() {
     const showResult = () => {
         const View = document.getElementById("view-data");
         const ViewOperated = document.getElementById("view-numbers-operated");
+        // Push the last number 
         arrayNumber.push(Number(NumberTemporaty));
-        console.log(arrayNumber);
-        console.log(arrayOperator);
+        // Call the function operated
         operated();
+        // Show the result and finished
         View.innerText = ResultTemporary;
     }
     const DeleteLastDigit = () => {
