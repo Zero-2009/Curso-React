@@ -79,12 +79,18 @@ function InterfaceCreate() {
     }
     const clearNumber = () => {
         let View = document.getElementById("view-data");
+        // Reset the values of numbers, arrayNumber and arrayOperators
+        ResultTemporary = "";
+        NumberTemporaty = "";
+        arrayNumber = [];
+        arrayOperator = [];
+        // Clear the view of number
+        View.innerText = "";
     }
     return (
         <>
             <section className="interface-calculator">
                 <section className="interface-view">
-                    <div className="view-numbers-operated" id="view-numbers-operated"></div>
                     <div className="view-numbers" id="view-data"></div>
                 </section>
                 <section className="interface-container">
