@@ -1,6 +1,8 @@
 import "./Style-Calculator.css"
 
 function InterfaceCreate() {
+    let OperatorToChange = "";
+    let OperatorChanged = "";
     let ResultTemporary = "";
     let NumberTemporaty = "";
     let arrayNumber = [];
@@ -9,10 +11,8 @@ function InterfaceCreate() {
         let digit = e.target.innerText;
         let View = document.getElementById("view-data");
         let btnOperatorDisable = document.querySelectorAll("#btn-operator");
-        // NumberTemporaty is the number with all of the digit and View.textContent is the content of View show now
-        NumberTemporaty += digit;
         View.textContent += digit;
-        // that is for undisable the buttons of operators
+        NumberTemporaty += digit;
         btnOperatorDisable.forEach(function(button) {
             button.disabled = false;
         })
@@ -20,56 +20,84 @@ function InterfaceCreate() {
     const addOperator = (e) => {
         let operator = e.target.innerText;
         let View = document.getElementById("view-data");
-        let btnOperatorDisable = document.querySelectorAll("#btn-operator");
-        // View.textContent put but no abovewrite the View else majoring the operator
-        View.textContent += operator;
-        // That disble the button when try to put another operator 
-        btnOperatorDisable.forEach(function(button) {
-            button.disabled = true;
-        })
-        //.push the number and the operator for the operation to result
-        arrayNumber.push(Number(NumberTemporaty));  
-        arrayOperator.push(operator);
-        // This clean the numberTemporaty 'cause we need another number until the button result is click
-        NumberTemporaty = "";
+        let btnOperatores = document.querySelectorAll("#btn-operator");
+        if (NumberTemporaty === "") {
+            if (operator === "*" || operator === "/") {
+                return
+            } else if (operator === "+" || operator === "-") {
+                if (operator === "+") {
+                    View.innerText = operator;
+                    OperatorChanged = "+";
+                } else if (operator === "-") {
+                    View.innerText = operator;
+                    OperatorChanged = "-";
+                }
+            }
+        } else {
+            if (arrayNumber.length === arrayOperator.length) {
+                if (operator === "+") {
+                    View.textContent += operator
+                    arrayOperator.push(operator);
+                    console.log("Changed to more")
+                    console.log(NumberTemporaty)
+                } else if (operator === "-") {
+                    View.textContent += operator
+                    arrayOperator.push(operator);
+                    console.log("Changed to resta")
+                }
+            }
+            if (OperatorChanged === "+") {
+                arrayNumber.push(Math.abs(Number(NumberTemporaty)));
+            } else if (OperatorChanged === "-") {
+                arrayNumber.push(-Math.abs(Number(NumberTemporaty)));
+            }
+            NumberTemporaty = "";
+        }
+    }
+    const showResult = () => {
+        const View = document.getElementById("view-data");
+        if (View.textContent === "") {
+            return alert("Error there is not number");
+        } else if (arrayOperator.length === 0) {
+            return alert("Error there is not operator")
+        } else if (NumberTemporaty === "") {
+            return 
+        } else {
+            // Push the last number 
+            arrayNumber.push(Number(NumberTemporaty));
+            // Call the function operated for the result
+            operated();
+            // Show the result and finished the operation
+            View.innerText = ResultTemporary;
+        }
     }
     // function to operated the numbers and operators
     function operated() {
-        arrayOperator.forEach((operator, index) => {
+        arrayOperator.forEach((element, index) => {
             let number1 = arrayNumber[index];
             let number2 = arrayNumber[index + 1];
             if (index === 0) {
-                if (operator === "+") {
+                if (element === "+") {
                     ResultTemporary = number1 + number2;
-                } else if (operator === "-") {
+                } else if (element === "-") {
                     ResultTemporary = number1 - number2;
-                } else if (operator === "*") {
+                } else if (element === "*") {
                     ResultTemporary = number1 * number2;
-                } else if (operator === "/") {
+                } else if (element === "/") {
                     ResultTemporary = number1 / number2;
                 }
             } else {
-                if (operator === "+") {
+                if (element === "+") {
                     ResultTemporary += number2;
-                } else if (operator === "-") {
+                } else if (element === "-") {
                     ResultTemporary -= number2;
-                } else if (operator === "*") {
+                } else if (element === "*") {
                     ResultTemporary *= number2;
-                } else if (operator === "/") {
+                } else if (element === "/") {
                     ResultTemporary /= number2;
                 }
             }
         })
-    }
-    const showResult = () => {
-        const View = document.getElementById("view-data");
-        const ViewOperated = document.getElementById("view-numbers-operated");
-        // Push the last number 
-        arrayNumber.push(Number(NumberTemporaty));
-        // Call the function operated
-        operated();
-        // Show the result and finished
-        View.innerText = ResultTemporary;
     }
     const DeleteLastDigit = () => {
         console.log("Delete Last Digit")
