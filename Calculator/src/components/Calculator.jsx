@@ -1,7 +1,5 @@
-import "./Style-Calculator.css"
-
+import "./Style-Calculator.css";
 function InterfaceCreate() {
-    let OperatorToChange = "";
     let OperatorChanged = "";
     let ResultTemporary = "";
     let NumberTemporaty = "";
@@ -120,7 +118,7 @@ function InterfaceCreate() {
             <section className="interface-calculator">
                 <section className="interface-view">
                     <div className="view-numbers" id="view-data"></div>
-                </section>
+                </section>   
                 <section className="interface-container">
                         <div className="interface-numbers">  
                             <button className="btn-num" onClick={clearNumber}>clr</button>
@@ -154,5 +152,4 @@ function InterfaceCreate() {
         </>
     )
 }
-
 export default InterfaceCreate;
